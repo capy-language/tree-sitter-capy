@@ -54,3 +54,5 @@ If you want to hack on that refer to the [official parser docs](https://tree-sit
 - add support for reflection in the grammar
 - add editor support
 - add support for locals
+- add missing operation types
+- review all the precedences for correctness
