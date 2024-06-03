@@ -73,8 +73,8 @@ module.exports = grammar({
     struct: $ => seq(
       'struct',
       '{',
-      repeat(seq($._arg, ',')),
-      optional($._arg),
+      repeat(seq($.arg, ',')),
+      optional($.arg),
       '}',
     ),
 
@@ -102,7 +102,7 @@ module.exports = grammar({
       $.module,
       $.import,
       $.cast,
-      seq($.signature, 'extern'),
+      $.extern_expr,
       $.struct_inst,
       $.binop,
       $.unop,
@@ -110,6 +110,8 @@ module.exports = grammar({
       $.index,
       seq('comptime', $.block_expr),
     )),
+
+    extern_expr: $ => seq($.signature, 'extern'),
 
     index: $ => seq($.expression, '[', $.expression, ']'),
 
@@ -149,13 +151,13 @@ module.exports = grammar({
 
     char_literal: $ => /'([^'\\\n]|\\.)*'?/,
 
-    application: $ => prec(100, seq(
+    application: $ => seq(
       field('fn', $.expression),
       '(',
       repeat(seq($.expression, ',')),
       optional($.expression),
       ')'
-    )),
+    ),
 
     array_expr: $ => seq(
       field('ty', $.array_type),
@@ -194,8 +196,8 @@ module.exports = grammar({
 
     signature: $ => seq(
       '(',
-      repeat(seq($._arg, ',')),
-      optional($._arg),
+      repeat(seq($.arg, ',')),
+      optional($.arg),
       ')',
       optional(
         seq(
@@ -205,7 +207,7 @@ module.exports = grammar({
       ),
     ),
 
-    _arg: $ => seq($.identifier, ':', $.type),
+    arg: $ => seq($.identifier, ':', field('type', $.type)),
 
     block_expr: $ => seq(
       '{',
@@ -269,11 +271,11 @@ module.exports = grammar({
       $.neg
     )),
 
-    ref:     $ => prec.right(8, seq('^',     $.expression)),
-    mut_ref: $ => prec.right(9, seq('^mut',  $.expression)),
+    ref:     $ => prec.right(0, seq('^',     $.expression)),
+    mut_ref: $ => prec.right(0, seq('^mut',  $.expression)),
     neg:     $ => prec.right(9, seq('!',     $.expression)),
     not:     $ => prec.right(9, seq('-',     $.expression)),
-    deref:   $ => prec.left(7,  seq($.expression, '^')),
+    deref:   $ => prec.left(0,  seq($.expression, '^')),
 
 	}
 });
