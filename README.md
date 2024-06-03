@@ -39,6 +39,11 @@ to see the syntax tree tree-sitter generates for a file run
 ```sh
 tree-sitter parse <your file>
 ```
+after editing the grammar make sure to run
+```sh
+tree-sitter generate
+```
+and pray to Allah that there are no conflicts.
 
 The syntax highlighting queries are stored in `queries/highlights.sch`.
 If you want to hack on them refer to the [official syntax highligthing docs](https://tree-sitter.github.io/tree-sitter/syntax-highlighting).
