@@ -202,12 +202,12 @@ module.exports = grammar({
       optional(
         seq(
           '->',
-          $.type,
+          field('ret_ty', $.type),
           )
       ),
     ),
 
-    arg: $ => seq($.identifier, ':', field('type', $.type)),
+    arg: $ => seq(field('name', $.identifier), ':', field('type', $.type)),
 
     block_expr: $ => seq(
       '{',
