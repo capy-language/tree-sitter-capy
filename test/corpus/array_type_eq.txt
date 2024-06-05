@@ -1,0 +1,26 @@
+===========================
+array type equality
+===========================
+a :: [3] bool == [3] bool;
+---------------------------
+(source_file
+  (top_expr
+    (const_assign
+      name: (identifier)
+      rhs: (expression
+        (binop
+          (eq
+            (expression
+              (type
+                (array_type
+                  (int_literal)
+                  (type
+                    (type_ident
+                      (identifier))))))
+            (expression
+              (type
+                (array_type
+                  (int_literal)
+                  (type
+                    (type_ident
+                      (identifier))))))))))))

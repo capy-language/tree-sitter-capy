@@ -1,0 +1,16 @@
+====================================
+else if
+====================================
+test :: if true {} else if false {};
+------------------------------------
+(source_file
+  (top_expr
+    (const_assign
+      name: (identifier)
+      rhs: (expression
+        (if_expr
+          (expression (literal (boolean_literal)))
+          (block_expr)
+          (expression (literal (boolean_literal)))
+          (block_expr)
+)))))

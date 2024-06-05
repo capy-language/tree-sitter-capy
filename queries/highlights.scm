@@ -13,6 +13,8 @@
  "&&"
  "["
  "]"
+ "^"
+ "^mut"
 ] @operator
 
 [
@@ -36,6 +38,7 @@
 "." @property
 "extern" @keyword
 "defer" @keyword
+"comptime" @keyword
 
 "struct" @keyword
 "->" @operator
@@ -51,6 +54,7 @@
 (comment) @comment
 (string_literal) @string
 (char_literal) @string
+(cast (expression) "as" (type) @type)
 
 [
  "true"

@@ -7,10 +7,10 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    /*[
-      $.deref,
-      $.ref
-    ]*/
+    [
+      $.type,
+      $.expression
+    ]
   ],
 
 	rules: {
@@ -56,18 +56,19 @@ module.exports = grammar({
 
     identifier: $ => /[A-Za-z_][A-Za-z0-9_]*/,
 
-    type: $ => prec(1, choice(
+    type: $ => prec(2, choice(
       $.type_ident,
       $.signature,
       $.struct,
       $.array_type,
+      $.slice_type,
       $.distinct,
       $.lambda_expression,
       $.ref,
       $.mut_ref,
     )),
 
-    type_ident: $ => choice($.identifier, $.path),
+    type_ident: $ => choice($.identifier, prec(1, seq($.identifier, repeat1(seq('.', $.identifier))))),
 
     struct: $ => seq(
       'struct',
@@ -77,6 +78,11 @@ module.exports = grammar({
       '}',
     ),
 
+    slice_type: $ => seq(
+      '[',
+      ']',
+      $.type,
+    ),
     array_type: $ => seq(
       '[',
       $.int_literal,
@@ -161,7 +167,7 @@ module.exports = grammar({
     ),
 
     array_expr: $ => seq(
-      field('ty', $.array_type),
+      field('ty', choice($.array_type, $.slice_type)),
       '{',
       repeat(seq($.expression, ',')),
       optional($.expression),
@@ -228,7 +234,7 @@ module.exports = grammar({
       repeat(
         seq(
           'else',
-          optional('if'),
+          optional(seq('if', $.expression)),
           $.block_expr
         )
       )
