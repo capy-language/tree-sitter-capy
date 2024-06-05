@@ -71,7 +71,7 @@ parser_config.capy = {
 -- add the capy filetype
 vim.filetype.add({
 	pattern = {
-		['(%a+).capy'] = 'capy',
+		['(.*).capy'] = 'capy',
 	},
 })
 ```
