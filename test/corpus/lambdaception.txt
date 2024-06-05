@@ -1,0 +1,47 @@
+=========
+lambdaception
+=========
+a :: (b: (b: () -> f32)) {
+    a :: () -> void {
+    	a :: () {
+	};
+    };
+}
+--------
+(source_file
+  (top_expr
+    (top_lambda
+      name: (identifier)
+      body: (lambda_expression
+        (signature
+          (arg
+            name: (identifier)
+            type: (type
+              (signature
+                (arg
+                  name: (identifier)
+                  type: (type
+                    (signature
+                      ret_ty: (type
+                        (type_ident
+                          (identifier))))))))))
+        (block_expr
+          (statement
+            (assignment
+              (const_assign
+                name: (identifier)
+                rhs: (expression
+                  (lambda_expression
+                    (signature
+                      ret_ty: (type
+                        (type_ident
+                          (identifier))))
+                    (block_expr
+                      (statement
+                        (assignment
+                          (const_assign
+                            name: (identifier)
+                            rhs: (expression
+                              (lambda_expression
+                                (signature)
+                                (block_expr)))))))))))))))))

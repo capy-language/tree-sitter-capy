@@ -543,27 +543,45 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
             "type": "REPEAT1",
             "content": {
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                {
                   "type": "STRING",
                   "value": "."
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  ]
                 }
               ]
             }
-          },
-          {
-            "type": "SYMBOL",
-            "name": "identifier"
           }
         ]
       }
+    },
+    "_deref_id": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "^"
+        }
+      ]
     },
     "literal": {
       "type": "CHOICE",

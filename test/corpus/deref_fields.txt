@@ -1,0 +1,38 @@
+===================
+deref fields
+===================
+
+main :: () {
+    a :: b^.a^.c^;
+}
+
+---
+
+(source_file
+  (top_expr
+    (top_lambda
+      name: (identifier)
+      body: (lambda_expression
+        (signature)
+        (block_expr
+          (statement
+            (assignment
+              (const_assign
+                name: (identifier)
+                rhs: (expression
+                  (unop
+                    (deref
+                      (expression
+                        (path
+                          (expression
+                            (unop
+                              (deref
+                                (expression
+                                  (path
+                                    (expression
+                                      (unop
+                                        (deref
+                                          (expression
+                                            (identifier)))))
+                                    (identifier))))))
+                          (identifier))))))))))))))

@@ -65,7 +65,6 @@ module.exports = grammar({
       $.lambda_expression,
       $.ref,
       $.mut_ref,
-      // TODO: unary and binary operations
     )),
 
     type_ident: $ => choice($.identifier, $.path),
@@ -124,9 +123,11 @@ module.exports = grammar({
     ),
 
     path: $ => prec.right(9, seq(
-      repeat1(seq($.identifier, '.')),
-      $.identifier
+      $.expression,
+      repeat1(seq('.', choice($.identifier))),
     )),
+
+    _deref_id: $ => seq($.identifier, '^'),
 
     literal: $ => choice(
       $.int_literal,
