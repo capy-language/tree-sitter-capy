@@ -41,6 +41,7 @@
 "comptime" @keyword
 "return" @keyword.return
 "loop" @keyword.loop
+"break" @keyword.loop
 
 "struct" @keyword
 "->" @operator

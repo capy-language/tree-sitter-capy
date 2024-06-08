@@ -1104,10 +1104,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "block_expr"
         }
       ]

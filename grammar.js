@@ -242,7 +242,7 @@ module.exports = grammar({
 
     while_stmt: $ => seq('while', $.expression, $.block_expr),
 
-    loop_stmt: $ => seq('loop', $.expression, $.block_expr),
+    loop_stmt: $ => seq('loop', $.block_expr),
 
     if_expr: $ => seq(
       'if',
