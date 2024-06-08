@@ -15,6 +15,21 @@
     }
   },
   {
+    "type": "and",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "application",
     "named": true,
     "fields": {
@@ -69,7 +84,18 @@
   {
     "type": "array_expr",
     "named": true,
-    "fields": {},
+    "fields": {
+      "ty": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -136,6 +162,10 @@
           "named": true
         },
         {
+          "type": "and",
+          "named": true
+        },
+        {
           "type": "div",
           "named": true
         },
@@ -160,7 +190,19 @@
           "named": true
         },
         {
+          "type": "mod",
+          "named": true
+        },
+        {
           "type": "mul",
+          "named": true
+        },
+        {
+          "type": "nand",
+          "named": true
+        },
+        {
+          "type": "neq",
           "named": true
         },
         {
@@ -173,6 +215,14 @@
         },
         {
           "type": "shortand",
+          "named": true
+        },
+        {
+          "type": "shortor",
+          "named": true
+        },
+        {
+          "type": "shr",
           "named": true
         },
         {
@@ -225,6 +275,21 @@
         },
         {
           "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comptime",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -367,6 +432,10 @@
         },
         {
           "type": "cast",
+          "named": true
+        },
+        {
+          "type": "comptime",
           "named": true
         },
         {
@@ -615,6 +684,21 @@
     }
   },
   {
+    "type": "mod",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "module",
     "named": true,
     "fields": {},
@@ -696,11 +780,41 @@
     }
   },
   {
+    "type": "nand",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "neg",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "neq",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -832,6 +946,36 @@
   },
   {
     "type": "shortand",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "shortor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "shr",
     "named": true,
     "fields": {},
     "children": {
@@ -1169,7 +1313,23 @@
     "named": false
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "&&",
+    "named": false
+  },
+  {
+    "type": "&~",
     "named": false
   },
   {
@@ -1242,6 +1402,10 @@
   },
   {
     "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -1350,6 +1514,10 @@
   },
   {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "||",
     "named": false
   },
   {

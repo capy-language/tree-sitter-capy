@@ -2,19 +2,27 @@
  ":"
  "="
  "=="
+ "!="
  "<"
  "<="
+ "%"
+ "-"
  "+"
  "*"
  "/"
  ">"
  ">="
  "|"
+ "||"
+ "&~"
  "&&"
+ "&"
  "["
  "]"
  "^"
  "^mut"
+ "<<"
+ ">>"
 ] @operator
 
 [
@@ -58,6 +66,7 @@
 (string_literal) @string
 (char_literal) @string
 (cast (expression) "as" (type) @type)
+; (array_expr ty: (type) @type '.' '[' ']')
 
 [
  "true"

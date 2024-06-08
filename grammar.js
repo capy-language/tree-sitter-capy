@@ -113,8 +113,10 @@ module.exports = grammar({
       $.unop,
       $.if_expr,
       $.index,
-      seq('comptime', $.block_expr),
+      $.comptime,
     )),
+
+    comptime: $ => prec.right(100, seq('comptime', $.expression)),
 
     extern_expr: $ => seq($.signature, 'extern'),
 
@@ -122,9 +124,10 @@ module.exports = grammar({
 
     struct_inst: $ => seq(
       $.type_ident,
+      '.',
       '{',
-      repeat(seq($.identifier, ':', $.expression, ',')),
-      optional(seq($.identifier, ':', $.expression)),
+      repeat(seq($.identifier, '=', $.expression, ',')),
+      optional(seq($.identifier, '=', $.expression)),
       '}',
     ),
 
@@ -167,13 +170,12 @@ module.exports = grammar({
     ),
 
     array_expr: $ => seq(
+      field('ty', $.type,),
+      '.',
       '[',
-      optional($.expression),
-      ']',
-      '{',
       repeat(seq($.expression, ',')),
       optional($.expression),
-      '}'
+      ']'
     ),
 
     module: $ => seq(
@@ -259,23 +261,33 @@ module.exports = grammar({
 
     binop: $ => choice(
       $.eq,
+      $.neq,
       $.geq,
       $.leq,
       $.less,
       $.greater,
       $.shortand,
+      $.and,
+      $.nand,
       $.add,
       $.sub,
       $.mul,
       $.div,
       $.or,
+      $.shortor,
       $.shl,
+      $.shr,
+      $.mod,
     //  $.dot,
     ),
 
     shortand: $ => prec.left(0, seq($.expression, "&&", $.expression)),
+    and: $ => prec.left(0, seq($.expression, "&", $.expression)),
+    nand: $ => prec.left(0, seq($.expression, "&~", $.expression)),
     or: $ => prec.left(0, seq($.expression, '|', $.expression)),
+    shortor: $ => prec.left(0, seq($.expression, '||', $.expression)),
     eq: $ => prec.left(0, seq($.expression, '==', $.expression)),
+    neq: $ => prec.left(0, seq($.expression, '!=', $.expression)),
     leq: $ => prec.left(0, seq($.expression, '<=', $.expression)),
     geq: $ => prec.left(0, seq($.expression, '>=', $.expression)),
     less: $ => prec.left(0, seq($.expression, '<', $.expression)),
@@ -284,7 +296,9 @@ module.exports = grammar({
     add: $ => prec.left(2, seq($.expression, '+', $.expression)),
     mul: $ => prec.left(3, seq($.expression, '*', $.expression)),
     div: $ => prec.left(4, seq($.expression, '/', $.expression)),
+    mod: $ => prec.left(4, seq($.expression, '%', $.expression)),
     shl: $ => prec.left(5, seq($.expression, '<<', $.expression)),
+    shr: $ => prec.left(5, seq($.expression, '>>', $.expression)),
    // dot: $ => prec.left(7, seq($.expression, '.', $.expression)),
 
     unop: $ => prec(11, choice(
