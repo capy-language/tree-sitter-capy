@@ -39,6 +39,8 @@
 "extern" @keyword
 "defer" @keyword
 "comptime" @keyword
+"return" @keyword.return
+"loop" @keyword.loop
 
 "struct" @keyword
 "->" @operator

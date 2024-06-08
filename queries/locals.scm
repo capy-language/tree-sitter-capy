@@ -19,4 +19,4 @@
 ((type_ident) @local.reference
 	      (#set! references.kind "type"))
 
-; (arg name: ($.identifier) @local.definition.var)
+; (arg name: (identifier) @local.definition.var)

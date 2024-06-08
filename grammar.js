@@ -85,7 +85,7 @@ module.exports = grammar({
     ),
     array_type: $ => seq(
       '[',
-      $.int_literal,
+      $.expression,
       ']',
       $.type,
     ),
@@ -167,7 +167,9 @@ module.exports = grammar({
     ),
 
     array_expr: $ => seq(
-      field('ty', choice($.array_type, $.slice_type)),
+      '[',
+      optional($.expression),
+      ']',
       '{',
       repeat(seq($.expression, ',')),
       optional($.expression),
@@ -223,9 +225,24 @@ module.exports = grammar({
       '}'
     ),
 
-    statement: $ => choice($.assignment, seq($.expression, ';'), $.defer, $.while_stmt, $.if_expr),
+    statement: $ => choice(
+      $.assignment,
+      seq($.expression, ';'),
+      $.defer,
+      $.while_stmt,
+      $.if_expr,
+      $.return_stmt,
+      $.break_stmt,
+      $.loop_stmt,
+    ),
+
+    return_stmt: $ => seq('return', $.expression, ';'),
+
+    break_stmt: $ => seq('break', ';'),
 
     while_stmt: $ => seq('while', $.expression, $.block_expr),
+
+    loop_stmt: $ => seq('loop', $.expression, $.block_expr),
 
     if_expr: $ => seq(
       'if',
