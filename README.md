@@ -54,7 +54,7 @@ If you want to hack on that refer to the [official parser docs](https://tree-sit
 
 ## neovim
 
-first install [nvim-tree-sitter](https://github.com/nvim-treesitter/nvim-treesitte), and make sure it is enabled, then add the following into your nvim config:
+first install [nvim-tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter), and make sure it is enabled, then add the following into your nvim config:
 ```lua
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.capy = {
