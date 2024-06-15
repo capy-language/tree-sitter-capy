@@ -8,8 +8,8 @@
 
 (block_expr "}" @ident.end)
 (struct_inst "}" @ident.end)
-(array_expr "}" @ident.end)
-(struct "{" @ident.end)
+(array_expr "]" @ident.end)
+(struct "}" @ident.end)
 (application ")" @ident.end)
 
 (string_literal) @ident.ignore
