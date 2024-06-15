@@ -13,9 +13,3 @@
 (application ")" @ident.end)
 
 (string_literal) @ident.ignore
-
-[
- ")"
- "]"
- "}"
-] @ident.branch
